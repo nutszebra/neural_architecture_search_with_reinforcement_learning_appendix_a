@@ -23,7 +23,7 @@ Test: Pictures are resized to 32x32, then they are normalized locally. Single im
 * Learning rate schedule  
 Learning rate is divided by 10 at [150, 170] epoch. The total number of epochs is 200.
 
-* batch
+* batch  
 32
 
 # Cifar10 result
