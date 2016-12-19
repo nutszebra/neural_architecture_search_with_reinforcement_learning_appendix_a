@@ -108,7 +108,6 @@ class AppendixA(nutszebra_chainer.Model):
         x = [x]
         outputs = []
         for i in six.moves.range(len(self.out_channels)):
-            print(x)
             x = self['conv{}'.format(i)](self.concatenate(x), train=train)
             outputs.append(x)
             x = [outputs[ii] for ii, s in enumerate(self.skip_connections) if s[i] == 1] + [outputs[i]]
