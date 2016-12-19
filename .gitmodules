@@ -1,0 +1,3 @@
+[submodule "trainer"]
+	path = trainer
+	url = https://github.com/nutszebra/trainer.git
