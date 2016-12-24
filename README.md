@@ -21,7 +21,7 @@ Train: Pictures are randomly resized in the range of [32, 36], then 32x32 patche
 Test: Pictures are resized to 32x32, then they are normalized locally. Single image test is used to calculate total accuracy. 
 
 * Learning rate schedule  
-Learning rate is divided by 10 at [150, 170] epoch. The total number of epochs is 200.
+Learning rate is divided by 10 at [150, 170] epochs. The total number of epochs is 200.
 
 * batch  
 32
