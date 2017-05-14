@@ -8,6 +8,24 @@ import functools
 from collections import defaultdict
 
 
+class Conv(nutszebra_chainer.Model):
+
+    def __init__(self, in_channel, out_channel, filter_size=(3, 3), stride=(1, 1), pad=(1, 1)):
+        super(Conv, self).__init__(
+            conv=L.Convolution2D(in_channel, out_channel, filter_size, stride, pad),
+        )
+
+    def weight_initialization(self):
+        self.conv.W.data = self.weight_relu_initialization(self.conv)
+        self.conv.b.data = self.bias_initialization(self.conv, constant=0)
+
+    def __call__(self, x, train=False):
+        return self.conv(x)
+
+    def count_parameters(self):
+        return functools.reduce(lambda a, b: a * b, self.conv.W.data.shape)
+
+
 class Conv_ReLU_BN(nutszebra_chainer.Model):
 
     def __init__(self, in_channel, out_channel, filter_size=(3, 3), stride=(1, 1), pad=(1, 1)):
@@ -55,7 +73,7 @@ class AppendixA(nutszebra_chainer.Model):
         for i in six.moves.range(len(out_channels)):
             modules += [('conv{}'.format(i), Conv_ReLU_BN(in_channel, out_channels[i], filters[i], 1, 0))]
             in_channel = int(np.sum([out_channels[ii] for ii, s in enumerate(skip_connections) if s[i] == 1])) + out_channels[i]
-        modules += [('linear', Conv_ReLU_BN(out_channels[-1], category_num, 1, 1, 0))]
+        modules += [('linear', Conv(out_channels[-1], category_num, 1, 1, 0))]
         # register layers
         [self.add_link(*link) for link in modules]
         self.modules = modules
