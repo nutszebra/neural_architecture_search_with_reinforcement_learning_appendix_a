@@ -25,7 +25,7 @@ if __name__ == '__main__':
                         default=200,
                         help='maximum epoch')
     parser.add_argument('--batch', '-b', type=int,
-                        default=32,
+                        default=128,
                         help='mini batch number')
     parser.add_argument('--gpu', '-g', type=int,
                         default=-1,
@@ -44,11 +44,13 @@ if __name__ == '__main__':
                         help='leraning rate')
 
     args = parser.parse_args().__dict__
+    print(args)
     lr = args.pop('lr')
 
     print('generating model')
     model = neural_architecture_search_appendix_a.AppendixA(10)
     print('Done')
+    print('Parameters: {}'.format(model.count_parameters()))
     optimizer = nutszebra_optimizer.OptimizerAppendixA(model, lr=lr)
     args['model'] = model
     args['optimizer'] = optimizer
