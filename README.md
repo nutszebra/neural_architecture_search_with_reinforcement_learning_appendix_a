@@ -24,14 +24,14 @@ Test: Pictures are resized to 32x32, then they are normalized locally. Single im
 Learning rate is divided by 10 at [150, 170] epochs. The total number of epochs is 200.
 
 * batch  
-32
+128
 
 # Cifar10 result
 
-| network              | depth | total accuracy (%) |
-|:---------------------|-------|-------------------:|
-| my implementation    | 15    | soon               |
-| [[1]][Paper]         | 15    | 94.5               |
+| network              | depth | total accuracy (%)                      |
+|:---------------------|-------|----------------------------------------:|
+| my implementation    | 15    | 90.35 (I look for bugs)                 |
+| [[1]][Paper]         | 15    | 94.5                                    |
 
 <img src="https://github.com/nutszebra/neural_architecture_search_with_reinforcement_learning_appendix_a/blob/master/loss.jpg" alt="loss" title="loss">
 <img src="https://github.com/nutszebra/neural_architecture_search_with_reinforcement_learning_appendix_a/blob/master/accuracy.jpg" alt="total accuracy" title="total accuracy">
